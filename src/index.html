@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>music2video</title>
+<!--    <script src="../static/ffmpeg-core.js"></script>-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/ffmpeg-core/0.11.0/ffmpeg-core.js"></script>
+    <script src="./index.js" defer></script>
+
+    <link href="./index.less" rel="stylesheet" />
+</head>
+<body>
+    <div class="button" id="upload">
+        <div class="button-inner">
+            上传
+        </div>
+    </div>
+    <div class="music-info">
+        <p id="music-name"></p>
+        <p id="music-size"></p>
+        <p id="music-type"></p>
+    </div>
+    <div>
+        <audio id="audio"></audio>
+    </div>
+
+    <div style="display: flex; align-items: center">
+        <div class="button" id="record">
+            <div class="button-inner">
+                录制
+            </div>
+        </div>
+        <h4 id="process" style="display: block; margin-left: 12px">0/0</h4>
+    </div>
+
+    <div>
+        <canvas id="canvas" class="canvas"></canvas>
+    </div>
+
+    <div>
+        <video id="video" class="canvas" controls></video>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 10px 30px;
+}
+
+.button {
+  margin: 10px 0;
+  height: 36px;
+  display: block;
+  width: 50px;
+
+  background-color: #1166ff;
+  color: white;
+
+  .button-inner {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    font-family: "Microsoft YaHei UI", sans-serif;
+    font-weight: bold;
+  }
+
+  &:hover {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &.active {
+    background-color: red;
+    width: 75px;
+  }
+}
+
+.music-info {
+  width: 200px;
+  padding: 20px 10px;
+  margin: 10px 0;
+
+  border: 2px solid #1166ff;
+
+  & > p {
+    margin: 4px 0;
+  }
+}
+
+.canvas {
+  border: 2px solid #1166ff;
+}
