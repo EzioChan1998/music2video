@@ -7,12 +7,25 @@ const ffmpeg = createFFmpeg({
     log: true,
 });
 
+document.addEventListener('drop', function (e) {
+    e.preventDefault()
+}, false);
+
+document.addEventListener('dragover', function (e) {
+    e.preventDefault()
+}, false)
+
 // if(!crossOriginIsolated) {
 //     window.SharedArrayBuffer = window.ArrayBuffer;
 // }
 
 const uploadButton = document.querySelector('#upload');
-uploadButton.addEventListener('click', handleUpload);
+uploadButton.addEventListener('click', handleUpload, false);
+const dropBox = document.querySelector('#drop-box');
+dropBox.addEventListener('dragenter', handleDragEvent, false);
+dropBox.addEventListener('dragleave', handleDragEvent, false);
+dropBox.addEventListener('drop', handleDragEvent, false);
+
 const musicName = document.querySelector('#music-name');
 const musicSize = document.querySelector('#music-size');
 const musicType = document.querySelector('#music-type');
@@ -29,6 +42,33 @@ const processDom = document.querySelector('#process');
 
 let audioFile = null;
 let isRecording = false;
+
+function handleDragEvent(event) {
+    if(event.type === 'dragenter') {
+        event.preventDefault();
+        event.stopPropagation();
+        dropBox.style.borderStyle = 'dashed';
+    } else if(event.type === 'dragleave') {
+        event.preventDefault();
+        event.stopPropagation();
+        dropBox.style.borderStyle = 'solid';
+    } else if(event.type === 'drop') {
+        dropBox.style.borderStyle = 'solid';
+        const file = event.dataTransfer.files[0];
+        if(file instanceof File) {
+            if(file.type.includes('audio')) {
+                audioFile = file;
+                musicName.innerText = file.name;
+                musicSize.innerText = Number(file.size / 1024).toFixed(2) + ' KB';
+                musicType.innerText = file.type;
+
+                audio.src = URL.createObjectURL(file);
+            } else {
+                alert('请上传音频文件')
+            }
+        }
+    }
+}
 
 function handleUpload() {
     let input = document.createElement('input');
